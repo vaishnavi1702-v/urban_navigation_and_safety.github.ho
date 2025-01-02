@@ -4,264 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Analysis and Design of Algorithms</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <title>Comprehensive Guide to Algorithm Design and Analysis</title>
     <style>
-    /* Global Reset */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Arial', sans-serif;
-        line-height: 1.6;
-        color: #444;
-        background-color: #f0f0f0;
-        padding: 2rem;
-        max-width: 1200px;
-        margin: 0 auto;
-        opacity: 0;
-        animation: fadeInEffect 1s forwards; /* Fade-in for body */
-    }
-
-    /* Header Styles */
-    header {
-        background-color: #7b68ee;
-        color: white;
-        padding: 2rem;
-        text-align: center;
-        border-radius: 10px;
-        margin-bottom: 2rem;
-        transform: translateY(-50px);
-        animation: slideInEffect 0.7s forwards 0.2s; /* Slide-in header */
-    }
-
-    header h1 {
-        font-size: 2.4rem;
-        margin-bottom: 0.5rem;
-    }
-
-    header p {
-        font-size: 1.1rem;
-        margin-top: 0.5rem;
-        font-style: italic;
-    }
-
-    /* Section Styles */
-    section {
-        background-color: white;
-        border: 1px solid #ddd;
-        border-radius: 10px;
-        padding: 2rem;
-        margin-bottom: 2rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        opacity: 0;
-        transform: translateY(50px);
-        animation: fadeInUpEffect 0.7s forwards;
-    }
-
-    section h2 {
-        color: #7b68ee;
-        font-size: 1.8rem;
-        margin-bottom: 1rem;
-    }
-
-    section p {
-        font-size: 1rem;
-        line-height: 1.5;
-        color: #555;
-    }
-
-    /* List Styles */
-    ul {
-        margin-top: 1rem;
-        padding-left: 1.5rem;
-        list-style-type: disc;
-    }
-
-    ul li {
-        font-size: 1rem;
-        color: #555;
-        margin-bottom: 0.5rem;
-        opacity: 0;
-        animation: fadeInEffect 1s forwards;
-        animation-delay: 0.2s;
-    }
-
-    /* Table Styles */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 1.5rem;
-    }
-
-    table th, table td {
-        padding: 0.75rem;
-        border: 1px solid #ddd;
-        text-align: left;
-        transition: background-color 0.3s ease; /* Smooth hover effect */
-    }
-
-    table th {
-        background-color: #7b68ee;
-        color: white;
-    }
-
-    table th:hover {
-        background-color: #5b4ab2;
-    }
-
-    table td:hover {
-        background-color: #f1f1f1;
-    }
-
-    /* Button/Link Styles */
-    a {
-        display: inline-block;
-        text-decoration: none;
-        background-color: #7b68ee;
-        color: white;
-        padding: 10px 15px;
-        border-radius: 5px;
-        font-size: 1rem;
-        margin-top: 1rem;
-        transition: background-color 0.3s, transform 0.3s; /* Scale effect */
-    }
-
-    a:hover {
-        background-color: #5b4ab2;
-        transform: scale(1.05); /* Slightly increase size on hover */
-    }
-
-    /* Animation Keyframes */
-    @keyframes fadeInEffect {
-        to {
-            opacity: 1;
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
         }
-    }
-
-    @keyframes fadeInUpEffect {
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        h1 {
+            text-align: center;
+            color: #2C3E50;
         }
-    }
-
-    @keyframes slideInEffect {
-        to {
-            transform: translateY(0);
+        h2 {
+            color: #2980B9;
         }
-    }
-
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        header h1 {
-            font-size: 2rem;
+        h3 {
+            color: #34495E;
         }
-
-        section h2 {
-            font-size: 1.5rem;
+        ul {
+            margin: 10px 0;
         }
-
-        section p, ul li {
-            font-size: 0.9rem;
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
         }
-
-        a {
-            padding: 8px 12px;
+        section {
+            margin-bottom: 40px;
         }
-    }
-</style>
-<script>
-        window.onload = function() {
-            const header = document.querySelector('header');
-            const sections = document.querySelectorAll('section');
-            
-            setTimeout(() => {
-                header.style.opacity = 1;
-                header.style.transform = 'translateY(0)';
-            }, 500); // Delay header transition
-
-            sections.forEach((section, index) => {
-                setTimeout(() => {
-                    section.style.opacity = 1;
-                    section.style.transform = 'translateY(0)';
-                }, 1000 * (index + 1)); // Section delays
-            });
-        };
-    </script>
+        .highlight {
+            color: #E74C3C;
+            font-weight: bold;
+        }
+        .concepts {
+            margin-left: 30px;
+        }
+        .example {
+            background-color: #ECF0F1;
+            padding: 10px;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Analysis and Design of Algorithms</h1>
-        <p>A thorough exploration of critical concepts in algorithm design, efficiency, and applications in real-world scenarios.</p>
-    </header>
+
+    <h1>Comprehensive Guide to Algorithm Design and Analysis</h1>
 
     <section>
-        <div class="reflection">
-            <h2>1) Natural Problems: Iteration, Recursion, and Backtracking</h2>
-            <p>Nature presents three fundamental approaches to solving problems:</p>
-            <ul>
-                <li><strong>Iteration:</strong> Repeatedly applying a solution to subproblems. We’ve seen examples like factorials and array traversals.</li>
-                <li><strong>Recursion:</strong> Breaking down problems into smaller parts. Studied through examples like Fibonacci and Tower of Hanoi.</li>
-                <li><strong>Backtracking:</strong> Exploring all possible solutions while eliminating invalid paths, seen in problems like N-Queens and maze solving.</li>
-            </ul>
-        </div>
+        <h2>1) Problems in Nature: Iteration, Recursion, and Backtracking</h2>
+        <p>In algorithm design, certain problems can be solved using iterative, recursive, or backtracking methods, each with its own use case and performance characteristics.</p>
+        
+        <ul>
+            <li><strong>Iteration:</strong> Repeating a set of instructions until a condition is met. Used in problems where a direct loop suffices, such as searching or summing elements in an array. Time complexity is generally <code>O(n)</code> when the loop runs over every element.</li>
+            <li><strong>Recursion:</strong> A function calls itself to solve subproblems. Useful in problems that can be divided into smaller subproblems, such as tree traversals or factorial calculations. Time complexity varies; for example, in <code>O(n)</code> for simple recursive summing.</li>
+            <li><strong>Backtracking:</strong> An approach to explore all possible solutions to a problem by trying partial solutions and abandoning them when they are not viable (e.g., N-Queens problem). It can have exponential time complexity <code>O(2^n)</code> in the worst case.</li>
+        </ul>
 
-        <div class="reflection">
-            <h2>2) Efficiency: Time and Space Considerations</h2>
-            <p><strong>Time Efficiency:</strong> Measures how quickly an algorithm operates.</p>
-            <p><strong>Space Efficiency:</strong> Refers to how much memory an algorithm consumes.</p>
-            <table>
-                <caption>Time Complexities of Common Problem Classes</caption>
-                <thead>
-                    <tr>
-                        <th>Problem Class</th>
-                        <th>Example Algorithms</th>
-                        <th>Time Complexity</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Constant Time</td>
-                        <td>Array element access</td>
-                        <td>O(1)</td>
-                    </tr>
-                    <tr>
-                        <td>Logarithmic Time</td>
-                        <td>Binary Search</td>
-                        <td>O(log n)</td>
-                    </tr>
-                    <tr>
-                        <td>Linear Time</td>
-                        <td>Linear Search</td>
-                        <td>O(n)</td>
-                    </tr>
-                    <tr>
-                        <td>Linearithmic Time</td>
-                        <td>Merge Sort, Quick Sort</td>
-                        <td>O(n log n)</td>
-                    </tr>
-                    <tr>
-                        <td>Quadratic Time</td>
-                        <td>Bubble Sort, Insertion Sort</td>
-                        <td>O(n²)</td>
-                    </tr>
-                    <tr>
-                        <td>Exponential Time</td>
-                        <td>NP-complete problems, Recursive Backtracking</td>
-                        <td>O(2ⁿ)</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <!-- More sections can go here with similar changes -->
-
+        <h3>Time Efficiency:</h3>
+        <p>Iteration is often faster and more memory-efficient than recursion, especially for simple problems. Recursion, while elegant, can suffer from stack overflow and added overhead. Backtracking is slow, especially for large problem spaces, as it explores all possible solutions.</p>
     </section>
 
-</body>
-</html>
+    <section>
+        <h2>2) Space and Time Efficiency</h2>
+        <p>Optimizing both time and space is a crucial part of algorithm design. We use <strong>Big-O notation</strong> to express how the running time and memory usage grow relative to the input size.</p>
+
+        <h3>Time Efficiency:</h3>
+        <p>Time efficiency refers to how an algorithm's runtime increases as the size of the input increases. Common complexities include:</p>
+        <ul>
+            <li><code>O(1)</code> – Constant time, regardless of input size.</li>
+            <li><code>O(log n)</code> – Logarithmic time, typical of binary search algorithms.</li>
+            <li><code>O(n)</code> – Linear time, seen in algorithms that process each element once.</li>
+            <li><code>O(n log n)</code> – Efficient sorting algorithms like Merge Sort or Quick Sort.</li>
+            <li><code>O(n^2)</code> – Quadratic time, typical of simple sorting algorithms like Bubble Sort.</li>
+        </ul>
+
+        <h3>Space Efficiency:</h3>
+        <p>Space efficiency refers to how much memory an algorithm uses as it processes data. Algorithms can range from using constant space <code>O(1)</code> (e.g., swapping two variables) to linear space <code>O(n)</code> (e.g., storing an array).</p>
+
+        <p><strong>Example:</strong> Quick Sort is more time-efficient than Bubble Sort (<code>O(n log n)</code> vs. <code>O(n^2)</code>), but Bubble Sort uses <code>O(1)</code> extra space, whereas Quick Sort requires <code>O(log n)</code> for recursion.</p>
+    </section>
+
+    <section>
+        <h2>3) Hierarchical Data and Tree Structures</h2>
+        <p>Tree structures are used to represent hierarchical relationships, such as file systems or organizational charts. These include binary trees, heaps, and balanced trees.</p>
+
+        <ul>
+            <li><strong>Binary Trees:</strong> A tree where each node has at most two children. This is often used in search algorithms like binary search trees (BSTs), where the left child is smaller than the parent and the right is larger. Operations like insertion, search, and deletion take <code>O(log n)</code> time in a balanced tree.</li>
+            <li><strong>Heaps:</strong> A binary tree used to implement priority queues. A Max Heap ensures that the parent is always greater than the children, while a Min Heap ensures the opposite. Both operations (insert and extract) take <code>O(log n)</code> time.</li>
+            <li><strong>Balanced Trees:</strong> AVL trees and Red-Black Trees maintain balance, ensuring that search, insert, and delete operations all take <code>O(log n)</code> time by keeping the tree height minimal.</li>
+        </ul>
+
+        <h3>Time Efficiency:</h3>
+        <p>Balanced trees (AVL, Red-Black) allow operations to remain efficient with a time complexity of <code>O(log n)</code>. Unbalanced trees can degrade to <code>O(n)</code> if the tree becomes skewed.</p>
+    </section>
+
+    <section>
+        <h2>4) Array Query Algorithms</h2>
+        <p>Efficient query algorithms for arrays are crucial when dealing with large datasets. Algorithms like Binary Search and Segment Trees provide efficient querying mechanisms.</p>
+
+        <ul>
+            <li><strong>Binary Search:</strong> Used on sorted arrays to find an element in <code>O(log n)</code> time.</li>
+            <li><strong>Prefix Sum:</strong> Preprocesses an array in <code>O(n)</code> time to allow answering range sum queries in constant time <code>O(1)</code>.</li>
+            <li><strong>Segment Trees:</strong> Efficient for range queries (like sum or min) and point updates in <code>O(log n)</code> time.</li>
+        </ul>
+
+        <h3>Time Efficiency:</h3>
+        <p>Binary Search provides <code>O(log n)</code> time for search operations on sorted arrays. Prefix Sum queries are answered in <code>O(1)</code> after preprocessing, while Segment Trees provide efficient range queries in <code>O(log n)</code>.</p>
+    </section>
+
+    <section>
+        <h2>5) Trees vs. Graphs</h2>
+        <p><strong>Trees</strong> are a special type of graph with no cycles and exactly one path between any two nodes. In contrast, a <strong>graph</strong> may have cycles, and there may be multiple paths between nodes.</p>
+
+        <ul>
+            <li><strong>Tree:</strong> Operations like insertion, deletion, and search in balanced trees take <code>O(log n)</code> time. Examples include binary search trees (BST) and heaps.</li>
+            <li><strong>Graph:</strong> Graph algorithms like BFS (Breadth-First Search) and DFS (Depth-First Search) explore nodes and edges. They generally have a time complexity of <code>O(V + E)</code>, where <code>V</code> is the number of vertices and <code>E</code> is the number of edges.</li>
+        </ul>
+
+        <h3>Time Efficiency:</h3>
+        <p>Operations on trees like searching and inserting are efficient with <code>O(log n)</code> time. Graph algorithms like BFS and DFS have a time complexity of <code>O(V + E)</code>, which depends on the size of the graph.</p>
+    </section>
+
+    <section>
+        <h2>6) Sorting and Searching Algorithms</h2>
+        <p>Sorting and searching are fundamental tasks in algorithm design.</p>
+
+        <ul>
+            <li><strong>Sorting:</strong>
+                <ul>
+                    <li><code>Merge Sort:</code> A divide-and-conquer algorithm with <code>O(n log n)</code> time complexity.</li>
+                    <li><code>Quick Sort:</code
