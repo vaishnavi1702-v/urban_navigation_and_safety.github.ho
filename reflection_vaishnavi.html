@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Analysis and Design of Algorithms</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+    /* Global Reset */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Arial', sans-serif;
+        line-height: 1.6;
+        color: #444;
+        background-color: #f0f0f0;
+        padding: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        opacity: 0;
+        animation: fadeInEffect 1s forwards; /* Fade-in for body */
+    }
+
+    /* Header Styles */
+    header {
+        background-color: #7b68ee;
+        color: white;
+        padding: 2rem;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+        transform: translateY(-50px);
+        animation: slideInEffect 0.7s forwards 0.2s; /* Slide-in header */
+    }
+
+    header h1 {
+        font-size: 2.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    header p {
+        font-size: 1.1rem;
+        margin-top: 0.5rem;
+        font-style: italic;
+    }
+
+    /* Section Styles */
+    section {
+        background-color: white;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        transform: translateY(50px);
+        animation: fadeInUpEffect 0.7s forwards;
+    }
+
+    section h2 {
+        color: #7b68ee;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    section p {
+        font-size: 1rem;
+        line-height: 1.5;
+        color: #555;
+    }
+
+    /* List Styles */
+    ul {
+        margin-top: 1rem;
+        padding-left: 1.5rem;
+        list-style-type: disc;
+    }
+
+    ul li {
+        font-size: 1rem;
+        color: #555;
+        margin-bottom: 0.5rem;
+        opacity: 0;
+        animation: fadeInEffect 1s forwards;
+        animation-delay: 0.2s;
+    }
+
+    /* Table Styles */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 1.5rem;
+    }
+
+    table th, table td {
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        text-align: left;
+        transition: background-color 0.3s ease; /* Smooth hover effect */
+    }
+
+    table th {
+        background-color: #7b68ee;
+        color: white;
+    }
+
+    table th:hover {
+        background-color: #5b4ab2;
+    }
+
+    table td:hover {
+        background-color: #f1f1f1;
+    }
+
+    /* Button/Link Styles */
+    a {
+        display: inline-block;
+        text-decoration: none;
+        background-color: #7b68ee;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        font-size: 1rem;
+        margin-top: 1rem;
+        transition: background-color 0.3s, transform 0.3s; /* Scale effect */
+    }
+
+    a:hover {
+        background-color: #5b4ab2;
+        transform: scale(1.05); /* Slightly increase size on hover */
+    }
+
+    /* Animation Keyframes */
+    @keyframes fadeInEffect {
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes fadeInUpEffect {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInEffect {
+        to {
+            transform: translateY(0);
+        }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        header h1 {
+            font-size: 2rem;
+        }
+
+        section h2 {
+            font-size: 1.5rem;
+        }
+
+        section p, ul li {
+            font-size: 0.9rem;
+        }
+
+        a {
+            padding: 8px 12px;
+        }
+    }
+</style>
+<script>
+        window.onload = function() {
+            const header = document.querySelector('header');
+            const sections = document.querySelectorAll('section');
+            
+            setTimeout(() => {
+                header.style.opacity = 1;
+                header.style.transform = 'translateY(0)';
+            }, 500); // Delay header transition
+
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = 1;
+                    section.style.transform = 'translateY(0)';
+                }, 1000 * (index + 1)); // Section delays
+            });
+        };
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Analysis and Design of Algorithms</h1>
+        <p>A thorough exploration of critical concepts in algorithm design, efficiency, and applications in real-world scenarios.</p>
+    </header>
+
+    <section>
+        <div class="reflection">
+            <h2>1) Natural Problems: Iteration, Recursion, and Backtracking</h2>
+            <p>Nature presents three fundamental approaches to solving problems:</p>
+            <ul>
+                <li><strong>Iteration:</strong> Repeatedly applying a solution to subproblems. We’ve seen examples like factorials and array traversals.</li>
+                <li><strong>Recursion:</strong> Breaking down problems into smaller parts. Studied through examples like Fibonacci and Tower of Hanoi.</li>
+                <li><strong>Backtracking:</strong> Exploring all possible solutions while eliminating invalid paths, seen in problems like N-Queens and maze solving.</li>
+            </ul>
+        </div>
+
+        <div class="reflection">
+            <h2>2) Efficiency: Time and Space Considerations</h2>
+            <p><strong>Time Efficiency:</strong> Measures how quickly an algorithm operates.</p>
+            <p><strong>Space Efficiency:</strong> Refers to how much memory an algorithm consumes.</p>
+            <table>
+                <caption>Time Complexities of Common Problem Classes</caption>
+                <thead>
+                    <tr>
+                        <th>Problem Class</th>
+                        <th>Example Algorithms</th>
+                        <th>Time Complexity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Constant Time</td>
+                        <td>Array element access</td>
+                        <td>O(1)</td>
+                    </tr>
+                    <tr>
+                        <td>Logarithmic Time</td>
+                        <td>Binary Search</td>
+                        <td>O(log n)</td>
+                    </tr>
+                    <tr>
+                        <td>Linear Time</td>
+                        <td>Linear Search</td>
+                        <td>O(n)</td>
+                    </tr>
+                    <tr>
+                        <td>Linearithmic Time</td>
+                        <td>Merge Sort, Quick Sort</td>
+                        <td>O(n log n)</td>
+                    </tr>
+                    <tr>
+                        <td>Quadratic Time</td>
+                        <td>Bubble Sort, Insertion Sort</td>
+                        <td>O(n²)</td>
+                    </tr>
+                    <tr>
+                        <td>Exponential Time</td>
+                        <td>NP-complete problems, Recursive Backtracking</td>
+                        <td>O(2ⁿ)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- More sections can go here with similar changes -->
+
+    </section>
+
+</body>
+</html>
