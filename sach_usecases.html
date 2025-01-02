@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Use Cases - Urban Navigation</title>
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #2d3436;
+            --secondary: #0984e3;
+            --accent: #00cec9;
+            --background: #1a1a2e;
+            --card-bg: #1e272e;
+            --text-primary: #dfe6e9;
+            --text-secondary: #b2bec3;
+            --gradient-start: #6c5ce7;
+            --gradient-end: #00cec9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: rgba(30, 39, 46, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        /* Navigation */
+        .main-nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Main Content */
+        main {
+            padding-top: 100px;
+        }
+
+        /* Use Case Styles */
+        .use-case {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+        }
+
+        .use-case:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .use-case-content {
+            flex: 1;
+            margin-bottom: 2rem;
+        }
+
+        .btn-wrapper {
+            text-align: center;
+            margin-top: auto;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .btn:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--gradient-end), var(--gradient-start));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(108, 92, 231, 0.4);
+        }
+
+        .btn:hover:before {
+            opacity: 1;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .use-case h2 {
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .use-case .sdg {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        .use-case strong {
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .main-nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">TEAM 4</h1>
+                <nav class="main-nav">
+                    <a href="https://github.com/sachidanand-A/urban_navigation_and_safety-/blob/main" class="nav-link">
+                        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+                        </svg>
+                        Github
+                    </a>
+                    <a href="index.html" class="nav-link">
+                        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+                        </svg>
+                        Overview
+                    </a>
+                    <a href="businesscases.html" class="nav-link">
+                        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="7.5 4.21 12 6.81 16.5 4.21"></polyline>
+                            <polyline points="7.5 19.79 7.5 14.6 3 12"></polyline>
+                            <polyline points="21 12 16.5 14.6 16.5 19.79"></polyline>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        Use Cases
+                    </a>
+                    <a href="reflections_team.html" class="nav-link">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M15 14c.2-1 .7-1.7 1.5-2.5M9 14c-.2-1-.7-1.7-1.5-2.5M6 9h.01M18 9h.01"></path>
+                            <path d="M12 2a8 8 0 0 0-8 8v1a4 4 0 0 0 4 4h8a4 4 0 0 0 4-4v-1a8 8 0 0 0-8-8z"></path>
+                            <path d="M9.1 16.3a2.8 2.8 0 0 0 5.8 0"></path>
+                        </svg>
+                        Reflections
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </header>
+  <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <p>&nbsp;</p>
+    <main class="container">
+        <div class="use-case fade-in">
+            <div class="use-case-content">
+                <h2>Multiple Route Mapping</h2>
+                <p class="sdg">When asked for navigation, multiple routes are shown to the user, including their distances.</p>
+                <div class="objective">
+                    <strong>Objective</strong>
+                    Provide users with multiple route options.
+                </div>
+                <div class="description">
+                    <strong>Description</strong>
+                    Users can view several possible routes between two locations, allowing them to choose the one that best suits their needs based on factors like travel time, distance, and current traffic conditions.
+                </div>
+                <div class="benefits">
+                    <strong>Benefits</strong>
+                    Empowers users with choices, enabling them to select the most convenient and efficient route.
+                </div>
+            </div>
+            <div class="btn-wrapper">
+                <a href="multiple_route.html" class="btn"><span>Explore Multiple Routes</span></a>
+            </div>
+        </div>
+
+         <div class="use-case fade-in">
+            <div class="use-case-content">
+                <h2>Adding New Locations</h2>
+                <p class="sdg">It gives an opportunity to users or programmers to add new locations with their distances between adjacent destinations.</p>
+                <div class="objective">
+                    <strong>Objective</strong>
+                    Update the city map with new developments.
+                </div>
+                <div class="description">
+                    <strong>Description</strong>
+                    Users or city officials can add new locations to the city map, such as newly constructed buildings, roads, or public amenities.
+                </div>
+                <div class="benefits">
+                    <strong>Benefits</strong>
+                    Keeps the navigation system up-to-date, ensuring accuracy and reliability for users.
+                </div>
+            </div>
+            <div class="btn-wrapper">
+                <a href="add_locations.html" class="btn"><span>Explore Adding Locations</span></a>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Header scroll functionality
+        let lastScroll = 0;
+        const header = document.querySelector('.main-header');
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+
+            if (currentScroll <= 0) {
+                header.style.transform = 'translateY(0)';
+                header.style.background = 'rgba(30, 39, 46, 0.95)';
+            } else if (currentScroll > lastScroll) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+                header.style.background = 'rgba(30, 39, 46, 0.98)';
+            }
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
