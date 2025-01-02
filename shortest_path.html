@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shortest Path View</title>
+    
+    <style>
+        /* Rich Color Palette */
+        :root {
+            --primary: #2d3436;
+            --secondary: #0984e3;
+            --accent: #00cec9;
+            --background: #1a1a2e;
+            --card-bg: #1e272e;
+            --text-primary: #dfe6e9;
+            --text-secondary: #b2bec3;
+            --gradient-start: #6c5ce7;
+            --gradient-end: #00cec9;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--text-primary);
+            background-color: var(--background);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: rgba(30, 39, 46, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem 2rem;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: transform 0.3s ease;
+        }
+
+        /* Use Case Cards */
+        .use-case {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .use-case:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 48px rgba(0, 0, 0, 0.2);
+        }
+
+        .use-case h2 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .use-case p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .use-case strong {
+            color: var(--accent);
+        }
+
+        .use-case ul {
+            list-style: none;
+            padding-left: 1rem;
+        }
+
+        .use-case li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .use-case li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            padding: 2rem 0;
+            background: var(--card-bg);
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--card-bg);
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 4rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--gradient-end);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 4rem 1rem 1rem;
+            }
+            
+            header h1 {
+                font-size: 2rem;
+            }
+            
+            .use-case {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="logo">Shortest Path Viewing</h1>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="use-case">
+            <h2>Description</h2>
+            <p>The shortest path view provides users with the most direct route between two locations, minimizing distance or travel time. It's especially useful for users seeking efficiency, such as commuters or those in time-sensitive situations. The route displayed is the optimal one in terms of the least distance or time, based on available road data.</p>
+        </div>
+
+        <div class="use-case">
+            <h2>Key Features</h2>
+            <p><strong>Optimal Route Calculation:</strong> Calculates the most direct path, either in terms of distance or time, from the user's current location to the destination.</p>
+            <p><strong>Minimal Resources:</strong> By focusing only on the shortest path, this feature helps save fuel, reduce travel time, and decrease emissions.</p>
+            <p><strong>Real-Time Adjustments:</strong> Continuously adjusts the route based on real-time data, such as road closures or traffic updates, to ensure users are always on the most efficient path.</p>
+        </div>
+
+        <div class="use-case">
+            <h2>Data Structures Used</h2>
+            <p><strong>Graph Representation:</strong> Similar to multiple route mapping, road networks are represented as graphs, where nodes are intersections and edges represent roads. The shortest path is computed based on edge weights (time or distance).</p>
+            <p><strong>Priority Queue (Min-Heap):</strong> This data structure is used to efficiently find the shortest path, helping algorithms like Dijkstra's to perform optimally.</p>
+            <p><strong>Adjacency List:</strong> Stores the connections between nodes and their associated weights, providing a memory-efficient structure for the road network.</p>
+        </div>
+
+        <div class="use-case">
+            <h2>Algorithms Used</h2>
+            <ul>
+                <li><strong>Dijkstra's Algorithm:</strong> A widely used algorithm for finding the shortest path in terms of distance or time. It calculates the shortest path from a source to all other nodes in a graph.</li>
+                <li><strong>A* Search Algorithm:</strong> This heuristic-driven algorithm speeds up the search for the shortest path, particularly in large road networks, by considering both distance and heuristic estimates.</li>
+            </ul>
+        </div>
+
+        <div class="use-case">
+            <h2>Benefits</h2>
+            <p>Helps users find the fastest or most direct route, saving time and reducing travel stress.</p>
+            <p>Reduces fuel consumption and emissions by selecting the shortest route, contributing to environmental sustainability.</p>
+            <p>Improves user satisfaction by ensuring the most efficient journey without unnecessary detours.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Shortest Path View. All Rights Reserved. | <a href="#">Contact Us</a></p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Intersection Observer for fade-in animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            // Observe all use-case elements
+            document.querySelectorAll('.use-case').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Header scroll functionality
+            let lastScroll = 0;
+            const header = document.querySelector('.main-header');
+
+            window.addEventListener('scroll', () => {
+                const currentScroll = window.pageYOffset;
+
+                if (currentScroll <= 0) {
+                    header.style.transform = 'translateY(0)';
+                    header.style.background = 'rgba(30, 39, 46, 0.95)';
+                } else if (currentScroll > lastScroll) {
+                    header.style.transform = 'translateY(-100%)';
+                } else {
+                    header.style.transform = 'translateY(0)';
+                    header.style.background = 'rgba(30, 39, 46, 0.98)';
+                }
+                lastScroll = currentScroll;
+            });
+        });
+    </script>
+</body>
+</html>
