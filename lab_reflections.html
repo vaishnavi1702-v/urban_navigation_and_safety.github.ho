@@ -3,258 +3,123 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algorithm Complexity and Challenges</title>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Data Structures and Algorithms Overview</title>
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 0;
         }
-        h1 {
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
             text-align: center;
         }
-        h2 {
-            color: #333;
+        section {
+            padding: 20px;
+            margin: 10px;
         }
-        .section {
-            margin-bottom: 20px;
+        h1, h2 {
+            color: #4CAF50;
         }
-        code {
-            background-color: #f4f4f4;
-            padding: 5px;
-            border-radius: 4px;
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+        .content {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
         }
     </style>
 </head>
 <body>
-    <h1>Algorithm Complexity and Challenges</h1>
-    
-    <div class="section">
-        <h2>1. Time Complexity Analysis</h2>
-        <pre><code>
-void analyzeComplexity(int n) {
-    for (int i = 0; i < n; i++) {  // O(n)
-        for (int j = 0; j < n; j++) {  // O(n)
-            // Some operation O(1)
-        }
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding mathematical notations like Big-O, Theta, and Omega. Analyzing nested loops and recursion complexities.</p>
-        <p><strong>Challenges in Real-World Applications:</strong> Mapping theoretical complexities to practical scenarios. Optimizing algorithms for real-world data constraints.</p>
-        <p><strong>Efficiency Determination:</strong> Compare multiple algorithms based on their asymptotic complexities and practical performance on given data.</p>
-    </div>
 
-    <div class="section">
-        <h2>2. Binary Search Tree (BST)</h2>
-        <pre><code>
-struct Node {
-    int data;
-    Node* left;
-    Node* right;
-    Node(int val) : data(val), left(nullptr), right(nullptr) {}
-};
+<header>
+    <h1>Data Structures and Algorithms Overview</h1>
+</header>
 
-void insert(Node*& root, int value) {
-    if (!root) {
-        root = new Node(value);
-        return;
-    }
-    if (value < root->data) {
-        insert(root->left, value);
-    } else {
-        insert(root->right, value);
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding rotations in AVL or Red-Black Trees. Balancing trees for optimal performance.</p>
-        <p><strong>Challenges in Real-World Applications:</strong> Optimizing databases for fast search and retrieval. Handling large datasets in balanced trees.</p>
-        <p><strong>Efficiency Determination:</strong> Use balanced trees (AVL or Red-Black Trees) to ensure O(log n) complexity for search, insert, and delete operations.</p>
-    </div>
+<!-- Time Complexity Analysis Section -->
+<section class="content">
+    <h2>1. Time Complexity Analysis</h2>
+    <p><strong>Algorithm:</strong> Time complexity analysis determines how the execution time of an algorithm scales with input size, usually represented by Big-O notation.</p>
+    <p><strong>Challenges in Learning:</strong> Understanding how operations scale with input size and identifying the dominant term in time complexity expressions can be difficult for beginners.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> Real-world systems may face performance issues not captured by theoretical analysis, such as memory limitations and hardware constraints.</p>
+    <p><strong>Efficiency:</strong> Time complexity analysis helps in selecting efficient algorithms that scale well with large data, ensuring systems remain performant.</p>
+</section>
 
-    <div class="section">
-        <h2>3. DFS and BFS</h2>
-        <h3>DFS Algorithm:</h3>
-        <pre><code>
-void DFS(Graph& g, int start, vector& visited) {
-    visited[start] = true;
-    cout << start << " ";
-    for (int neighbor : g[start]) {
-        if (!visited[neighbor]) {
-            DFS(g, neighbor, visited);
-        }
-    }
-}
-        </code></pre>
-        <h3>BFS Algorithm:</h3>
-        <pre><code>
-void BFS(Graph& g, int start) {
-    queue q;
-    vector visited(g.size(), false);
-    q.push(start);
-    visited[start] = true;
+<!-- Binary Search Tree (BST) Section -->
+<section class="content">
+    <h2>2. Binary Search Tree (BST)</h2>
+    <p><strong>Algorithm:</strong> A Binary Search Tree is a tree structure where each node has at most two children and follows the ordering property where left children are smaller, and right children are larger.</p>
+    <p><strong>Challenges in Learning:</strong> Maintaining the tree’s properties during insertions and deletions, and handling edge cases like duplicates can be complex.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> An unbalanced BST can degrade to a linked list (O(n) time complexity), which affects performance. Self-balancing trees like AVL are often used to address this.</p>
+    <p><strong>Efficiency:</strong> A balanced BST provides efficient search, insertion, and deletion operations (O(log n)) for large datasets, making it ideal for applications like database indexing.</p>
+</section>
 
-    while (!q.empty()) {
-        int node = q.front();
-        q.pop();
-        cout << node << " ";
-        for (int neighbor : g[node]) {
-            if (!visited[neighbor]) {
-                q.push(neighbor);
-                visited[neighbor] = true;
-            }
-        }
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> DFS: Understanding recursion and its stack implications. BFS: Implementing queue-based traversal efficiently.</p>
-        <p><strong>Challenges in Real-World Applications:</strong> DFS: Used in puzzle solving and connected component identification. BFS: Used in shortest path problems in unweighted graphs.</p>
-        <p><strong>Efficiency Determination:</strong> Choose DFS for exhaustive searches and BFS for level-order traversal or shortest path in unweighted graphs.</p>
-    </div>
+<!-- DFS and BFS Section -->
+<section class="content">
+    <h2>3. DFS and BFS (Depth-First Search & Breadth-First Search)</h2>
+    <p><strong>Algorithm:</strong> DFS explores as far as possible along a branch before backtracking using a stack, while BFS explores all neighbors at the current depth before moving deeper using a queue.</p>
+    <p><strong>Challenges in Learning:</strong> Understanding when to use DFS vs BFS and implementing recursion for DFS or managing a queue for BFS can be tricky.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> DFS may cause stack overflow on deep graphs, while BFS can consume a lot of memory for large graphs due to the queue.</p>
+    <p><strong>Efficiency:</strong> Both DFS and BFS have a time complexity of O(V + E) but the choice depends on the specific problem, with DFS being more suitable for certain tasks like topological sorting and BFS for shortest-path finding.</p>
+</section>
 
-    <div class="section">
-        <h2>4. Heap</h2>
-        <pre><code>
-void heapify(vector& heap, int n, int i) {
-    int largest = i;
-    int left = 2 * i + 1;
-    int right = 2 * i + 2;
+<!-- Heap Section -->
+<section class="content">
+    <h2>4. Heap</h2>
+    <p><strong>Algorithm:</strong> A heap is a binary tree-based structure that satisfies the heap property. Max-heaps and min-heaps allow efficient access to the maximum and minimum elements, respectively.</p>
+    <p><strong>Challenges in Learning:</strong> Understanding how to perform insertion and deletion while maintaining the heap property can be tricky, especially for large datasets.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> Heaps are less efficient for arbitrary element access, making them unsuitable for cases where frequent searches are needed.</p>
+    <p><strong>Efficiency:</strong> Heaps offer O(log n) time for insertion and deletion, making them ideal for priority queues and other use cases where quick access to the maximum or minimum is necessary.</p>
+</section>
 
-    if (left < n && heap[left] > heap[largest]) largest = left;
-    if (right < n && heap[right] > heap[largest]) largest = right;
+<!-- Sorting Algorithms Section -->
+<section class="content">
+    <h2>5. Sorting Algorithms</h2>
+    <p><strong>Algorithm:</strong> Sorting algorithms arrange elements in a particular order. Examples include Merge Sort (O(n log n)), Quick Sort (O(n log n) average), and Heap Sort (O(n log n)).</p>
+    <p><strong>Challenges in Learning:</strong> Understanding the mechanisms behind each algorithm and comparing their performance in different situations can be difficult. Sorting with fewer comparisons (e.g., Merge Sort) requires mastering recursion.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> Sorting algorithms can be inefficient for specific types of data, and factors like stability and memory usage must be considered in practice.</p>
+    <p><strong>Efficiency:</strong> Algorithms like Merge Sort and Quick Sort are efficient for large datasets with average time complexities of O(n log n). However, in certain cases (like pre-sorted or reverse-ordered data), worst-case performance may affect efficiency.</p>
+</section>
 
-    if (largest != i) {
-        swap(heap[i], heap[largest]);
-        heapify(heap, n, largest);
-    }
-}
+<!-- Search Algorithms Section -->
+<section class="content">
+    <h2>6. Search Algorithms</h2>
+    <p><strong>Algorithm:</strong> Search algorithms are used to find elements within data structures. Common search algorithms include Binary Search (O(log n)) and Linear Search (O(n)).</p>
+    <p><strong>Challenges in Learning:</strong> Understanding when to use Binary Search (only in sorted data) and the inefficiency of Linear Search for large datasets can be confusing.</p>
+    <p><strong>Challenges in Real-World Applications:</strong> Binary Search requires sorted data, which may not always be practical. Linear Search is simple but inefficient for large datasets.</p>
+    <p><strong>Efficiency:</strong> Binary Search is highly efficient (O(log n)) for sorted data, but Linear Search (O(n)) is only useful for unsorted or small datasets.</p>
+</section>
 
-void heapSort(vector& arr) {
-    int n = arr.size();
-    for (int i = n / 2 - 1; i >= 0; i--) heapify(arr, n, i);
-    for (int i = n - 1; i > 0; i--) {
-        swap(arr[0], arr[i]);
-        heapify(arr, i, 0);
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding heap properties and heapify process.</p>
-        <p><strong>Challenges in Real-World Applications:</strong> Applications in priority queues and job scheduling.</p>
-        <p><strong>Efficiency Determination:</strong> Heap Sort provides O(n log n) complexity and is useful when space is limited.</p>
-    </div>
+<!-- Graph Algorithms Section -->
+<section class="content">
+    <h2>7. Graph Algorithms</h2>
+    <p><strong>Algorithm:</strong> Graph algorithms are used for analyzing and traversing graphs. Common examples include DFS, BFS, Dijkstra’s Algorithm (O(V²) or O((V + E) log V)), and Prim’s/Kruskal’s Algorithms (O(E log V)) for finding Minimum Spanning Trees.</p>
+    <p><strong>Challenges in Learning:</strong> Implementing graph algorithms can be complex due to various graph types (directed, undirected, weighted, unweighted) and the need for different representations (adjacency list vs adjacency matrix).</p>
+    <p><strong>Challenges in Real-World Applications:</strong> Large-scale graphs can lead to performance bottlenecks. For example, Dijkstra’s Algorithm can become computationally expensive with dense graphs.</p>
+    <p><strong>Efficiency:</strong> Graph algorithms like Dijkstra’s offer efficient solutions for weighted graphs, but real-world applications often require optimization techniques to handle large graphs efficiently.</p>
+</section>
 
-    <div class="section">
-        <h2>5. Sorting Algorithms</h2>
+<footer>
+    <p>&copy; 2025 Data Structures and Algorithms Overview</p>
+</footer>
 
-        <h3>a) Bubble Sort:</h3>
-        <pre><code>
-void bubbleSort(vector& arr) {
-    for (int i = 0; i < arr.size() - 1; i++) {
-        for (int j = 0; j < arr.size() - i - 1; j++) {
-            if (arr[j] > arr[j + 1]) {
-                swap(arr[j], arr[j + 1]);
-            }
-        }
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding inefficiencies in its nested loop structure.</p>
-        <p><strong>Efficiency Determination:</strong> O(n²) complexity makes it unsuitable for large datasets.</p>
-
-        <h3>b) Selection Sort:</h3>
-        <pre><code>
-void selectionSort(vector& arr) {
-    for (int i = 0; i < arr.size() - 1; i++) {
-        int minIdx = i;
-        for (int j = i + 1; j < arr.size(); j++) {
-            if (arr[j] < arr[minIdx]) {
-                minIdx = j;
-            }
-        }
-        swap(arr[minIdx], arr[i]);
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding its inefficiency on large datasets.</p>
-        <p><strong>Efficiency Determination:</strong> Has O(n²) complexity, better suited for small datasets.</p>
-
-        <h3>c) Insertion Sort:</h3>
-        <pre><code>
-void insertionSort(vector& arr) {
-    for (int i = 1; i < arr.size(); i++) {
-        int key = arr[i];
-        int j = i - 1;
-        // Move elements of arr[0..i-1] that are greater than key to one position ahead of their current position
-        while (j >= 0 && arr[j] > key) {
-            arr[j + 1] = arr[j];
-            j--;
-        }
-        arr[j + 1] = key;
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding the process of shifting elements during insertion.</p>
-        <p><strong>Efficiency Determination:</strong> Efficient for small or partially sorted datasets due to its adaptive nature.</p>
-
-        <h3>d) Merge Sort:</h3>
-        <pre><code>
-void merge(vector& arr, int left, int mid, int right) {
-    int n1 = mid - left + 1;
-    int n2 = right - mid;
-
-    vector L(n1), R(n2);
-    for (int i = 0; i < n1; i++) L[i] = arr[left + i];
-    for (int i = 0; i < n2; i++) R[i] = arr[mid + 1 + i];
-
-    int i = 0, j = 0, k = left;
-    while (i < n1 && j < n2) {
-        if (L[i] <= R[j]) {
-            arr[k++] = L[i++];
-        } else {
-            arr[k++] = R[j++];
-        }
-    }
-    while (i < n1) arr[k++] = L[i++];
-    while (j < n2) arr[k++] = R[j++];
-}
-
-void mergeSort(vector& arr, int left, int right) {
-    if (left < right) {
-        int mid = left + (right - left) / 2;
-        mergeSort(arr, left, mid);
-        mergeSort(arr, mid + 1, right);
-        merge(arr, left, mid, right);
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding the divide-and-conquer paradigm.</p>
-        <p><strong>Efficiency Determination:</strong> Efficient for large datasets due to O(n log n) time complexity but requires additional space.</p>
-
-        <h3>e) Quick Sort:</h3>
-        <pre><code>
-int partition(vector& arr, int low, int high) {
-    int pivot = arr[high];  // Pivot element
-    int i = low - 1;
-    for (int j = low; j < high; j++) {
-        if (arr[j] < pivot) {
-            i++;
-            swap(arr[i], arr[j]);
-        }
-    }
-    swap(arr[i + 1], arr[high]);
-    return i + 1;
-}
-
-void quickSort(vector& arr, int low, int high) {
-    if (low < high) {
-        int pi = partition(arr, low, high);  // Partition index
-        quickSort(arr, low, pi - 1);         // Sort left of partition
-        quickSort(arr, pi + 1, high);        // Sort right of partition
-    }
-}
-        </code></pre>
-        <p><strong>Challenges in Learning:</strong> Understanding the partitioning process and recursion.</p>
-        <p><strong>Efficiency Determination:</strong> Quick Sort is efficient for most datasets due to its average time complexity of O(n log n) and in-place sorting.</p>
-    </div>
 </body>
 </html>
